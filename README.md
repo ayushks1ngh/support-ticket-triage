@@ -94,6 +94,7 @@ Important settings:
 | `RETRY_MAX_DELAY_SECONDS` | `8` | bounded delay cap |
 | `MODEL_MAX_TOKENS` | `4096` | `256..16384` |
 | `MODEL_TEMPERATURE` | `0.01` | near-deterministic classification |
+| `REQUEST_TIMEOUT_SECONDS` | `30` | `5..120`; provider request timeout |
 
 ## Run
 
@@ -215,6 +216,20 @@ Measured offline baseline on the 8 versioned examples (2026-08-15):
 | Rule / model / fallback | 4 / 0 / 4 |
 
 This deliberately conservative offline result is not a live-model quality claim: ambiguous cases are reviewed rather than guessed. Run the same command without `--offline` to measure a configured provider. Results vary by model and should be recorded with model ID and date.
+
+## Verification status
+
+| Check | Status |
+|---|---|
+| Offline tests (36 passed) | ✅ Verified |
+| Sample/evaluation pipeline reproducible | ✅ Verified |
+| API efficiency (no amplification) | ✅ Verified |
+| Real provider structured-output conformance | ⏳ Not yet verified — requires live test |
+| Live model classification quality | ⏳ Not yet measured |
+| Live latency | ⏳ Not yet measured |
+| Live throttling/backoff behavior | ⏳ Not yet measured |
+
+Live results will be recorded here after the first successful provider test with a rotated credential.
 
 ## Security
 

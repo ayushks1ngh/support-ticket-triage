@@ -13,7 +13,7 @@ Both adapters use Strands `OpenAIModel`, the official custom OpenAI-compatible e
 Provider/model selection is environment-driven. Model IDs are explicit configuration because availability changes. The default Groq model is `llama-3.3-70b-versatile`; users should verify current account availability.
 
 ## Reliability
-Temperature is near zero, output is Pydantic-validated, IDs are reconciled against each requested chunk, and semantic inconsistencies fail closed. Strands retries throttling with bounded exponential backoff. MVP uses at most one additional application-level retry only for a whole transient provider call if configured; defaults avoid layered retry amplification.
+Temperature is near zero, output is Pydantic-validated, IDs are reconciled against each requested chunk, and semantic inconsistencies fail closed. Strands retries throttling errors with bounded exponential backoff (configurable attempts, initial delay, and max delay). There is no additional application-level retry; provider failures fail closed to human review without amplification.
 
 ## Offline behavior
 Core tests use fake providers. `--offline` performs rules and returns human-review fallbacks for unresolved tickets, making demonstrations possible without credentials while never pretending ambiguous tickets were model-classified.
