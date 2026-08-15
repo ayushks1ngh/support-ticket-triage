@@ -28,3 +28,6 @@ outputs/
 .vscode/
 .idea/
 .DS_Store
+
+# Local Kiro code-intelligence configuration
+.kiro/settings/
