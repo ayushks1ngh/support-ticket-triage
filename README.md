@@ -224,12 +224,26 @@ This deliberately conservative offline result is not a live-model quality claim:
 | Offline tests (36 passed) | ✅ Verified |
 | Sample/evaluation pipeline reproducible | ✅ Verified |
 | API efficiency (no amplification) | ✅ Verified |
-| Real provider structured-output conformance | ⏳ Not yet verified — requires live test |
-| Live model classification quality | ⏳ Not yet measured |
-| Live latency | ⏳ Not yet measured |
+| Real provider structured-output conformance | ✅ Verified |
+| Live model classification quality | ✅ Verified |
+| Live latency | ✅ Verified |
 | Live throttling/backoff behavior | ⏳ Not yet measured |
 
 Live results will be recorded here after the first successful provider test with a rotated credential.
+
+### Live evaluation (Groq, llama-3.3-70b-versatile, 2026-08-15)
+
+| Metric | Offline | Live |
+|---|---:|---:|
+| Exact accuracy | 0.625 | 0.625 |
+| Category accuracy | 0.750 | 0.750 |
+| Urgency accuracy | 0.750 | 0.875 |
+| Routing accuracy | 0.750 | 0.750 |
+| Human-review precision | 0.500 | 0.500 |
+| Human-review recall | 1.000 | 1.000 |
+| API calls | 0 | 1 |
+| Latency | ~2ms | ~1507ms |
+| Rule / model / fallback | 4/0/4 | 4/4/0 |
 
 ## Security
 

@@ -42,39 +42,39 @@
     },
     {
       "ticket_id": "T-005",
-      "category": "other",
-      "urgency": "medium",
-      "confidence": 0.0,
-      "routing_team": "General Support",
-      "human_review": true,
-      "reason": "Automatic classification unavailable. Offline mode requires human review.",
-      "source": "fallback"
+      "category": "product",
+      "urgency": "low",
+      "confidence": 0.8,
+      "routing_team": "Product Support",
+      "human_review": false,
+      "reason": "The user is reporting an unexpected change in the dashboard after an update, which suggests a potential issue with the product's behavior or configuration.",
+      "source": "llm"
     },
     {
       "ticket_id": "T-006",
-      "category": "other",
-      "urgency": "medium",
-      "confidence": 0.0,
-      "routing_team": "General Support",
+      "category": "account_auth",
+      "urgency": "high",
+      "confidence": 0.9,
+      "routing_team": "Account Support",
       "human_review": true,
-      "reason": "Automatic classification unavailable. Offline mode requires human review.",
-      "source": "fallback"
+      "reason": "The user is unable to log in and is also reporting a duplicate charge, which suggests a potential issue with account authentication and billing. Human review: conflicting deterministic category signals.",
+      "source": "llm"
     }
   ],
   "errors": [],
   "metrics": {
-    "request_id": "f8859ad4-6895-432b-a2a1-f0c01b3ee79f",
+    "request_id": "df9a2dcd-8660-431a-b118-5d34cd88120a",
     "ticket_count": 6,
     "rule_count": 4,
-    "model_count": 0,
-    "fallback_count": 2,
-    "human_review_count": 2,
-    "failure_count": 2,
-    "api_calls": 0,
+    "model_count": 2,
+    "fallback_count": 0,
+    "human_review_count": 1,
+    "failure_count": 0,
+    "api_calls": 1,
     "retries": 0,
-    "provider": "offline",
-    "model_id": "none",
+    "provider": "groq",
+    "model_id": "llama-3.3-70b-versatile",
     "batch_size": 10,
-    "latency_ms": 1.677
+    "latency_ms": 1247.529
   }
 }
