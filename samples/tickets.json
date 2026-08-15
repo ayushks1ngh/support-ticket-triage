@@ -1,0 +1,32 @@
+[
+  {
+    "ticket_id": "T-001",
+    "subject": "Cannot sign in",
+    "body": "My account is locked and the password reset link expired."
+  },
+  {
+    "ticket_id": "T-002",
+    "subject": "Duplicate charge",
+    "body": "I was charged twice for the same monthly invoice."
+  },
+  {
+    "ticket_id": "T-003",
+    "subject": "Production outage",
+    "body": "The API is unavailable for all users in production."
+  },
+  {
+    "ticket_id": "T-004",
+    "subject": "Feature request",
+    "body": "Please add a compact view to the dashboard."
+  },
+  {
+    "ticket_id": "T-005",
+    "subject": "Dashboard changed unexpectedly",
+    "body": "A widget moved after the update and I cannot tell whether this is intended."
+  },
+  {
+    "ticket_id": "T-006",
+    "subject": "Cannot log in after duplicate charge",
+    "body": "I need a password reset and a refund."
+  }
+]
