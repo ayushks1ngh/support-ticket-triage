@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "support-ticket-triage"
+version = "0.1.0"
+description = "Rule-first support ticket triage agent using Strands Agents"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic==2.13.4",
+  "python-dotenv==1.2.2",
+  "strands-agents[openai]==1.52.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "mypy==2.3.1",
+  "pytest==9.1.1",
+  "ruff==0.16.3",
+]
+
+[project.scripts]
+support-triage = "support_triage.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["live: requires provider credentials and network access"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src"]
+plugins = ["pydantic.mypy"]
