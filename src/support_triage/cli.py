@@ -65,7 +65,8 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps(model_dump_jsonable(report.metrics), indent=2))
             if errors:
                 print(
-                    f"Rejected {len(errors)} invalid record(s); see JSON report errors.",
+                    f"Rejected {len(errors)} invalid record(s). "
+                    "Details are available in JSON reports.",
                     file=sys.stderr,
                 )
                 return 2

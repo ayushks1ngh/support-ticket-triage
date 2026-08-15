@@ -93,7 +93,10 @@ class StrandsTicketAgent:
             )
             raw_output = agent_result.structured_output
             if raw_output is None:
-                raise ProviderError("provider returned no structured classification")
+                raise ProviderError(
+                    "provider returned no structured classification",
+                    retry_count=strategy.retry_count,
+                )
             output = BatchModelOutput.model_validate(raw_output)
             return ProviderResponse(output=output, retry_count=strategy.retry_count)
         except ProviderError:
