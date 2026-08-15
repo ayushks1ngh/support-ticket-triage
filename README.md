@@ -21,14 +21,15 @@ JSON / CSV
     -> Pydantic input validation and normalization
     -> narrow conflict-aware deterministic rules
     -> unresolved chunks
-    -> one no-tools Strands Agent call per chunk
+    -> local knowledge retrieval (no API cost)
+    -> one no-tools Strands Agent call per chunk (with knowledge context)
     -> Pydantic + ticket-ID reconciliation
     -> deterministic team routing
     -> confidence / inconsistency / failure review boundary
     -> JSON / CSV and privacy-safe run metrics
 ```
 
-The LLM only returns category, urgency, confidence, and a concise reason. Python owns routing and human-review policy. There is one stateless classifier agent, no agent-to-agent calls, tools, validation model, or routing model. See [Architecture](docs/ARCHITECTURE.md), [Agent design](docs/AGENT_DESIGN.md), and [schema](docs/DATA_SCHEMA.md).
+The LLM only returns category, urgency, confidence, and a concise reason. Python owns routing and human-review policy. There is one stateless classifier agent, no agent-to-agent calls, no validation model, and no routing model. A lightweight local knowledge base provides classification guidance in the prompt without additional API calls. See [Architecture](docs/ARCHITECTURE.md), [Agent design](docs/AGENT_DESIGN.md), and [schema](docs/DATA_SCHEMA.md).
 
 ## Requirements
 
@@ -95,6 +96,7 @@ Important settings:
 | `MODEL_MAX_TOKENS` | `4096` | `256..16384` |
 | `MODEL_TEMPERATURE` | `0.01` | near-deterministic classification |
 | `REQUEST_TIMEOUT_SECONDS` | `30` | `5..120`; provider request timeout |
+| `BATCH_DELAY_SECONDS` | `0` | `0..30`; pause between provider calls for rate-limit protection |
 
 ## Run
 
@@ -123,7 +125,7 @@ uv run support-triage classify \
   --output outputs/results.json
 ```
 
-CLI flags `--provider`, `--model-id`, `--threshold`, and `--batch-size` override environment values. Invalid records are reported and cause exit code 2; valid records are still processed. JSON reports include structured record errors. CSV mode reports their count on stderr.
+CLI flags `--provider`, `--model-id`, `--threshold`, `--batch-size`, and `--batch-delay` override environment values. Invalid records are reported and cause exit code 2; valid records are still processed. JSON reports include structured record errors. CSV mode reports their count on stderr.
 
 ### Input
 
@@ -180,12 +182,12 @@ uv run ruff format --check .
 uv run mypy src
 ```
 
-Current verified result (2026-08-15):
+Current verified result (2026-08-16):
 
 ```text
-36 passed, 1 skipped
+82 passed, 1 skipped
 Ruff: passed
-mypy strict: passed (16 source files)
+mypy strict: passed (18 source files)
 ```
 
 The skipped test is an opt-in live-provider smoke test. To run it with a newly issued credential:
@@ -221,7 +223,7 @@ This deliberately conservative offline result is not a live-model quality claim:
 
 | Check | Status |
 |---|---|
-| Offline tests (36 passed) | ✅ Verified |
+| Offline tests (82 passed) | ✅ Verified |
 | Sample/evaluation pipeline reproducible | ✅ Verified |
 | API efficiency (no amplification) | ✅ Verified |
 | Real provider structured-output conformance | ✅ Verified |

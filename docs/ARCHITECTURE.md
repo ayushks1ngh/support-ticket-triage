@@ -4,8 +4,10 @@
 
 ```text
 JSON/CSV -> Pydantic input validation -> normalization
-         -> narrow deterministic rules (obvious cases only)
-         -> unresolved-ticket chunks -> one Strands structured-output call/chunk
+         -> narrow conflict-aware deterministic rules (obvious cases only)
+         -> unresolved-ticket chunks
+         -> local knowledge retrieval (no API cost)
+         -> one Strands structured-output call/chunk (with knowledge context)
          -> schema + semantic validation -> deterministic routing
          -> confidence/inconsistency/provider-failure review boundary
          -> JSON/CSV + run metrics
@@ -13,6 +15,7 @@ JSON/CSV -> Pydantic input validation -> normalization
 
 ## Components
 - `models.py`: enums and Pydantic boundary models.
+- `knowledge.py`: local keyword-search knowledge base and ticket history lookup.
 - `config.py`: environment configuration and bounds.
 - `rules.py`: small, conflict-aware obvious-case classifier.
 - `agent.py`: prompt and supported Strands structured-output invocation.
@@ -26,7 +29,8 @@ JSON/CSV -> Pydantic input validation -> normalization
 
 ## Key decisions
 - One classifier agent, no tools and no multi-agent graph. Strands orchestrates structured model inference only.
-- Rules require strong phrase evidence and reject cross-category conflicts. They are an optimization, not a general NLP system.
+- A lightweight local knowledge base provides classification context in the prompt without additional API calls.
+- Rules require strong phrase evidence, reject cross-category conflicts, and check for vocabulary signals from other categories before finalizing. They are an optimization, not a general NLP system.
 - Model output does not choose the team; Python routing prevents taxonomy drift.
 - A batch schema lets one call classify several unresolved tickets. Chunk size limits prompt/output risk. Processing is sequential by default (`MAX_CONCURRENCY=1`) to avoid rate-limit bursts.
 - Provider failures become per-ticket human-review results, preserving batch progress.
