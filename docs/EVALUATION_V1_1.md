@@ -1,4 +1,4 @@
-# V1.1 Evaluation Results
+# Evaluation Results
 
 ## Dataset
 
@@ -8,23 +8,46 @@
 |---|---:|
 | account_auth | 21 |
 | billing | 20 |
-| technical | 24 |
+| technical | 25 |
 | product | 20 |
-| other | 20 |
+| other | 19 |
 
 | Urgency | Count |
 |---|---:|
 | high | 32 |
-| medium | 33 |
+| medium | 32 |
 | low | 30 |
-| critical | 10 |
+| critical | 11 |
 
 | Human review expected | Count |
 |---|---:|
-| false | 85 |
-| true | 20 |
+| false | 87 |
+| true | 18 |
 
-## Live evaluation (Groq, llama-3.3-70b-versatile, 2026-08-15)
+Note: X-002 relabeled to `technical/high` and X-005 relabeled to `account_auth/critical` (primary-intent routing) in V1.3.
+
+## Live evaluation history
+
+### V1.3 (Groq, llama-3.3-70b-versatile, 2026-08-16)
+
+| Metric | Value |
+|---|---:|
+| Total tickets | 105 |
+| Exact accuracy | 0.657 |
+| Category accuracy | 0.867 |
+| Urgency accuracy | 0.781 |
+| Routing accuracy | 0.838 |
+| Human-review precision | 0.552 |
+| Human-review recall | 0.889 |
+| API calls | 10 |
+| Tickets per API call | 9.2 |
+| Total latency | ~89s |
+| Rule classifications | 13 |
+| Model classifications | 92 |
+| Fallback classifications | 0 |
+| Structured output failures | 0 |
+
+### V1.1 baseline (Groq, llama-3.3-70b-versatile, 2026-08-15)
 
 | Metric | Value |
 |---|---:|
