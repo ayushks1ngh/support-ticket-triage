@@ -1,0 +1,34 @@
+[
+  {
+    "ticket": {"ticket_id": "E-001", "subject": "Cannot sign in", "body": "My account is locked."},
+    "expected": {"category": "account_auth", "urgency": "high", "routing_team": "Account Support", "human_review": false}
+  },
+  {
+    "ticket": {"ticket_id": "E-002", "subject": "Refund requested", "body": "Please refund the last invoice."},
+    "expected": {"category": "billing", "urgency": "medium", "routing_team": "Billing Operations", "human_review": false}
+  },
+  {
+    "ticket": {"ticket_id": "E-003", "subject": "Production outage", "body": "API unavailable for all users."},
+    "expected": {"category": "technical", "urgency": "critical", "routing_team": "Incident Response", "human_review": false}
+  },
+  {
+    "ticket": {"ticket_id": "E-004", "subject": "Feature request", "body": "Please add dark mode."},
+    "expected": {"category": "product", "urgency": "low", "routing_team": "Product Support", "human_review": false}
+  },
+  {
+    "ticket": {"ticket_id": "E-005", "subject": "Partnership question", "body": "Who can discuss a reseller agreement?"},
+    "expected": {"category": "other", "urgency": "medium", "routing_team": "General Support", "human_review": true}
+  },
+  {
+    "ticket": {"ticket_id": "E-006", "subject": "Dashboard changed unexpectedly", "body": "A widget moved after the update."},
+    "expected": {"category": "product", "urgency": "medium", "routing_team": "Product Support", "human_review": false}
+  },
+  {
+    "ticket": {"ticket_id": "E-007", "subject": "Cannot log in after duplicate charge", "body": "I need a password reset and refund."},
+    "expected": {"category": "other", "urgency": "high", "routing_team": "General Support", "human_review": true}
+  },
+  {
+    "ticket": {"ticket_id": "E-008", "subject": "How do I update my profile?", "body": "I cannot find the profile setting."},
+    "expected": {"category": "product", "urgency": "low", "routing_team": "Product Support", "human_review": false}
+  }
+]

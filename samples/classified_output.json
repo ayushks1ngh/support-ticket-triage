@@ -1,0 +1,80 @@
+{
+  "results": [
+    {
+      "ticket_id": "T-001",
+      "category": "account_auth",
+      "urgency": "high",
+      "confidence": 0.96,
+      "routing_team": "Account Support",
+      "human_review": false,
+      "reason": "Clear deterministic account_auth phrase matched.",
+      "source": "rule"
+    },
+    {
+      "ticket_id": "T-002",
+      "category": "billing",
+      "urgency": "high",
+      "confidence": 0.96,
+      "routing_team": "Billing Operations",
+      "human_review": false,
+      "reason": "Clear deterministic billing phrase matched.",
+      "source": "rule"
+    },
+    {
+      "ticket_id": "T-003",
+      "category": "technical",
+      "urgency": "critical",
+      "confidence": 0.96,
+      "routing_team": "Incident Response",
+      "human_review": false,
+      "reason": "Clear deterministic technical phrase matched.",
+      "source": "rule"
+    },
+    {
+      "ticket_id": "T-004",
+      "category": "product",
+      "urgency": "low",
+      "confidence": 0.96,
+      "routing_team": "Product Support",
+      "human_review": false,
+      "reason": "Clear deterministic product phrase matched.",
+      "source": "rule"
+    },
+    {
+      "ticket_id": "T-005",
+      "category": "other",
+      "urgency": "medium",
+      "confidence": 0.0,
+      "routing_team": "General Support",
+      "human_review": true,
+      "reason": "Automatic classification unavailable. Offline mode requires human review.",
+      "source": "fallback"
+    },
+    {
+      "ticket_id": "T-006",
+      "category": "other",
+      "urgency": "medium",
+      "confidence": 0.0,
+      "routing_team": "General Support",
+      "human_review": true,
+      "reason": "Automatic classification unavailable. Offline mode requires human review.",
+      "source": "fallback"
+    }
+  ],
+  "errors": [],
+  "metrics": {
+    "request_id": "f8859ad4-6895-432b-a2a1-f0c01b3ee79f",
+    "ticket_count": 6,
+    "rule_count": 4,
+    "model_count": 0,
+    "fallback_count": 2,
+    "human_review_count": 2,
+    "failure_count": 2,
+    "api_calls": 0,
+    "retries": 0,
+    "provider": "offline",
+    "model_id": "none",
+    "batch_size": 10,
+    "latency_ms": 1.677
+  }
+}
