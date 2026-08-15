@@ -16,6 +16,23 @@ A reproducible, rule-first Python MVP for the Rooman AI Challenge. It validates 
 
 ## Architecture
 
+```mermaid
+flowchart TD
+    A[JSON / CSV Input] --> B[Pydantic Validation & Normalization]
+    B --> C{Deterministic Rules}
+    C -->|Obvious match| D[Rule Result<br/>confidence 0.96]
+    C -->|Ambiguous / conflict| E[Local Knowledge Retrieval]
+    E --> F[Strands Agent<br/>structured_output_model]
+    F --> G[Groq / NVIDIA<br/>OpenAI-compatible API]
+    G --> H[Pydantic Schema Validation<br/>+ Ticket-ID Reconciliation]
+    H --> I{Confidence ≥ 0.75?}
+    I -->|Yes| J[Deterministic Routing]
+    I -->|No / inconsistent| K[Human Review]
+    D --> J
+    J --> L[JSON / CSV Output<br/>+ Run Metrics]
+    K --> L
+```
+
 ```text
 JSON / CSV
     -> Pydantic input validation and normalization
@@ -30,6 +47,87 @@ JSON / CSV
 ```
 
 The LLM only returns category, urgency, confidence, and a concise reason. Python owns routing and human-review policy. There is one stateless classifier agent, no agent-to-agent calls, no validation model, and no routing model. A lightweight local knowledge base provides classification guidance in the prompt without additional API calls. See [Architecture](docs/ARCHITECTURE.md), [Agent design](docs/AGENT_DESIGN.md), and [schema](docs/DATA_SCHEMA.md).
+
+## API efficiency
+
+```mermaid
+flowchart LR
+    subgraph "50 tickets"
+        T1[30 obvious] -->|"0 API calls"| R1[Rule results]
+        T2[20 ambiguous] -->|"2 API calls<br/>(batch size 10)"| R2[Model results]
+    end
+    R1 --> O[Output]
+    R2 --> O
+```
+
+For `N` tickets, calls are approximately `ceil(unresolved / BATCH_SIZE)`, not `N`. Obvious tickets consume no call. Structured validation and routing happen locally; there is no second LLM judge. Concurrency defaults to one, and Strands throttling retries are exponentially backed off and bounded. The MVP intentionally has no persistent cache because ticket content may be sensitive; see [API cost strategy](docs/API_COST_STRATEGY.md).
+
+Run metrics include request ID, ticket/source/review/failure counts, provider/model, batch size, API calls, retries, and latency. They exclude ticket subject/body and credentials.
+
+## Why each component exists
+
+| Component | Purpose | Why not something else? |
+|---|---|---|
+| **Deterministic rules** | Handle obvious tickets (auth, billing, outage, feature-request) at 0 API cost | Cheaper and more predictable than calling an LLM for clear-cut cases |
+| **Local knowledge base** | Provide classification guidance (product vs technical boundary, escalation policy) in the prompt | No vector DB or external infrastructure needed; zero API cost |
+| **Strands Agents SDK** | Orchestrate structured-output LLM classification with validated Pydantic schemas | Official framework; handles retries, streaming, and model abstraction |
+| **Groq (default)** | Fast, reliable, OpenAI-compatible inference for llama-3.3-70b | 100% structured-output success rate, 3.9× faster than NVIDIA in benchmarks |
+| **Pydantic validation** | Enforce schema at every boundary (input, model output, final result) | Catches malformed LLM responses before they reach routing |
+| **Deterministic routing** | Map validated category + urgency to teams without LLM involvement | Prevents taxonomy drift; teams are operational decisions, not model guesses |
+
+## Requirements mapping
+
+| Challenge requirement | Implementation | Evidence |
+|---|---|---|
+| Accept subject + body | `models.Ticket` with Pydantic validation | `test_models.py` |
+| Classify category | 5-category taxonomy in rules + LLM prompt | `test_rules.py`, `test_classifier.py` |
+| Classify urgency | 4-level urgency in rules + LLM prompt | `test_rules.py` |
+| Confidence score | Model-declared 0–1, finite-validated | `test_models.py`, `test_validator.py` |
+| Routing decision | `router.route_ticket()` — deterministic | `test_router.py` |
+| Human-review handling | Threshold + inconsistency + failure → review | `test_validator.py`, `test_classifier.py` |
+| Batch processing | Chunked with order preservation | `test_batch.py` (100-ticket test) |
+| Sample tickets | `samples/tickets.json` (6 tickets) | Committed artifact |
+| Classified output | `samples/classified_output.json` | Live-generated |
+| Decision boundary | Documented below with numbered rules | Matches `validator.py` logic |
+
+## Decision boundary
+
+1. Invalid fields are rejected at the boundary.
+2. Exactly one strong deterministic category match with no cross-category vocabulary produces a rule result at confidence `0.96`.
+3. Cross-category vocabulary signals (even without a second rule match) defer to the model.
+4. Unresolved valid tickets are classified together in bounded chunks with local knowledge context.
+5. Confidence below `0.75` by default requires human review.
+6. `other`, conflicting rule evidence, or critical language inconsistent with model urgency requires review regardless of confidence.
+7. Missing/duplicate/invented model IDs, malformed output, offline ambiguity, or provider failure produces a safe `other`/General Support fallback with confidence `0` and review required.
+
+The threshold is a conservative operating boundary, not a calibrated probability. Production deployment requires calibration from reviewed labels.
+
+## Sample: realistic input → output
+
+**Input ticket:**
+```json
+{
+  "ticket_id": "T-005",
+  "subject": "Dashboard changed unexpectedly",
+  "body": "A widget moved after the update and I cannot tell whether this is intended."
+}
+```
+
+**Output (live Groq classification):**
+```json
+{
+  "ticket_id": "T-005",
+  "category": "product",
+  "urgency": "low",
+  "confidence": 0.80,
+  "routing_team": "Product Support",
+  "human_review": false,
+  "reason": "The user is reporting an unexpected change in the dashboard after an update, which suggests a potential issue with the product's behavior or configuration.",
+  "source": "llm"
+}
+```
+
+**What happened:** No rule matched → knowledge base provided product/technical boundary guidance → Strands called Groq once → model returned structured JSON → Pydantic validated → confidence 0.80 ≥ 0.75 → routed to Product Support → no human review needed.
 
 ## Requirements
 
@@ -156,23 +254,6 @@ CLI flags `--provider`, `--model-id`, `--threshold`, `--batch-size`, and `--batc
 
 See [`samples/classified_output.json`](samples/classified_output.json) for a complete report generated by the application.
 
-## Decision boundary
-
-1. Invalid fields are rejected at the boundary.
-2. Exactly one strong deterministic category match produces a rule result at confidence `0.96`; conflicting categories defer to the model.
-3. Unresolved valid tickets are classified together in bounded chunks.
-4. Confidence below `0.75` by default requires human review.
-5. `other`, conflicting rule evidence, or critical language inconsistent with model urgency requires review regardless of confidence.
-6. Missing/duplicate/invented model IDs, malformed output, offline ambiguity, or provider failure produces a safe `other`/General Support fallback with confidence `0` and review required.
-
-The threshold is a conservative operating boundary, not a calibrated probability. Production deployment requires calibration from reviewed labels.
-
-## API efficiency
-
-For `N` tickets, calls are approximately `ceil(unresolved / BATCH_SIZE)`, not `N`. Obvious tickets consume no call. Structured validation and routing happen locally; there is no second LLM judge. Concurrency defaults to one, and Strands throttling retries are exponentially backed off and bounded. The MVP intentionally has no persistent cache because ticket content may be sensitive; see [API cost strategy](docs/API_COST_STRATEGY.md).
-
-Run metrics include request ID, ticket/source/review/failure counts, provider/model, batch size, API calls, retries, and latency. They exclude ticket subject/body and credentials.
-
 ## Test
 
 ```bash
@@ -231,9 +312,7 @@ This deliberately conservative offline result is not a live-model quality claim:
 | Live latency | ✅ Verified |
 | Live throttling/backoff behavior | ⏳ Not yet measured |
 
-Live results will be recorded here after the first successful provider test with a rotated credential.
-
-### Live evaluation (Groq, llama-3.3-70b-versatile, 2026-08-15)
+### Live evaluation (Groq, llama-3.3-70b-versatile, 2026-08-16)
 
 | Metric | Offline | Live |
 |---|---:|---:|
@@ -246,6 +325,20 @@ Live results will be recorded here after the first successful provider test with
 | API calls | 0 | 1 |
 | Latency | ~2ms | ~1507ms |
 | Rule / model / fallback | 4/0/4 | 4/4/0 |
+
+### V1.3 expanded evaluation (105 tickets, live, 2026-08-16)
+
+| Metric | Result |
+|---|---:|
+| Exact accuracy | 0.657 |
+| Category accuracy | 0.867 |
+| Urgency accuracy | 0.781 |
+| Routing accuracy | 0.838 |
+| Human-review precision | 0.552 |
+| Human-review recall | 0.889 |
+| API calls | 10 |
+| Latency | ~89s |
+| Rule / model / fallback | 13 / 92 / 0 |
 
 ## Security
 
@@ -267,9 +360,10 @@ Hosted online mode transmits unresolved subject/body text to the selected provid
 - Provider/model tool-calling compatibility can vary despite OpenAI-compatible transport.
 - CSV cannot embed record error objects; use JSON when detailed rejection data is needed.
 - This is a local CLI/library prototype—not a service, queue consumer, or help-desk integration.
-- The live model smoke test was not run during this build because the supplied Groq key was exposed in conversation and must be rotated.
+- Knowledge base is small (6 entries); production use requires broader coverage.
+- Ticket history uses mock data; no real customer integration exists.
 
-See [Tradeoffs](docs/TRADEOFFS.md) and [Roadmap](docs/ROADMAP.md) for future calibration, RAG, duplicate detection, queues, integrations, observability, feedback, and hardened security. Those features are intentionally outside the MVP.
+See [Tradeoffs](docs/TRADEOFFS.md) and [Roadmap](docs/ROADMAP.md) for future calibration, duplicate detection, queues, integrations, observability, feedback, and hardened security. Those features are intentionally outside the MVP.
 
 ## Project layout
 

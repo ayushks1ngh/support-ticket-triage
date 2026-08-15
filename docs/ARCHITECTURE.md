@@ -1,5 +1,35 @@
 # Architecture
 
+## Detailed flow diagram
+
+```mermaid
+flowchart TD
+    IN[/"JSON / CSV Input"/] --> VAL[Pydantic Validation<br/>& Normalization]
+    VAL -->|valid tickets| RULES{Deterministic<br/>Rules Engine}
+    VAL -->|invalid records| ERR[Input Errors<br/>exit code 2]
+    
+    RULES -->|"Obvious match<br/>(no cross-category vocab)"| RULE_OUT[Rule Result<br/>confidence=0.96<br/>source=rule]
+    RULES -->|"Ambiguous / conflict /<br/>cross-category vocabulary"| CHUNK[Chunk Unresolved<br/>batch_size=10]
+    
+    CHUNK --> KB[Local Knowledge<br/>Retrieval]
+    KB --> AGENT[Strands Agent<br/>structured_output_model]
+    AGENT --> PROVIDER[Groq / NVIDIA<br/>OpenAI-compatible API]
+    PROVIDER --> SCHEMA[Pydantic Schema<br/>Validation]
+    SCHEMA --> RECON[Ticket-ID<br/>Reconciliation]
+    
+    RECON -->|valid| REVIEW{Confidence<br/>≥ 0.75?}
+    RECON -->|"malformed / missing IDs"| FALLBACK[Fallback Result<br/>confidence=0<br/>human_review=true]
+    
+    REVIEW -->|Yes + consistent| ROUTE[Deterministic<br/>Routing]
+    REVIEW -->|"No / inconsistent /<br/>category=other"| HR[Human Review<br/>+ Routing]
+    
+    RULE_OUT --> ROUTE
+    ROUTE --> OUT[/"JSON / CSV Output<br/>+ Run Metrics"/]
+    HR --> OUT
+    FALLBACK --> OUT
+    ERR --> OUT
+```
+
 ## Runtime flow
 
 ```text
