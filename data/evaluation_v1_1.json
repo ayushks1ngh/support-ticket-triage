@@ -1,0 +1,1367 @@
+[
+  {
+    "ticket": {
+      "ticket_id": "A-001",
+      "subject": "Cannot sign in",
+      "body": "My account is locked."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "high",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-002",
+      "subject": "Password reset not working",
+      "body": "The password reset link expired."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "high",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-003",
+      "subject": "Account locked after failed attempts",
+      "body": "I can't log in after 5 tries."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "high",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-004",
+      "subject": "2FA code not arriving",
+      "body": "Two factor authentication SMS never comes."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "high",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-005",
+      "subject": "Can't sign in on mobile",
+      "body": "Cannot sign in using the mobile app."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "high",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-006",
+      "subject": "Access issue with shared account",
+      "body": "Multiple team members cannot access the workspace since yesterday."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "high",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-007",
+      "subject": "SSO configuration broken",
+      "body": "SAML integration stopped working after our IdP update."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "high",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-008",
+      "subject": "Session expires too quickly",
+      "body": "I get logged out every 5 minutes even with remember-me checked."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "medium",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-009",
+      "subject": "Email verification loop",
+      "body": "I verify my email but it keeps asking me to verify again."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "medium",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-010",
+      "subject": "Permissions changed unexpectedly",
+      "body": "I lost admin access overnight without any changes on my end."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "high",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-011",
+      "subject": "OAuth token refresh failing",
+      "body": "API returns 401 after token refresh since the last update."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "high",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-012",
+      "subject": "Account deactivated without notice",
+      "body": "My account shows deactivated but I never requested it."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "high",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-013",
+      "subject": "Login works on desktop not mobile",
+      "body": "Same credentials work on Chrome but fail on iOS app."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "medium",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-014",
+      "subject": "Password requirements unclear",
+      "body": "What are the password complexity requirements?"
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "low",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-015",
+      "subject": "MFA recovery codes lost",
+      "body": "I lost my recovery codes and my phone is broken."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "high",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-016",
+      "subject": "Account merge request",
+      "body": "I have two accounts and want to merge them."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "low",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-017",
+      "subject": "API key compromised",
+      "body": "I think someone got my API key, please revoke all keys immediately."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "critical",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-018",
+      "subject": "Invitation link expired",
+      "body": "The team invitation link I received says it expired."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "low",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-019",
+      "subject": "Username change request",
+      "body": "How do I change my display name?"
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "low",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "A-020",
+      "subject": "Suspicious login alert",
+      "body": "I got an alert about a login from an unknown location."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "high",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-001",
+      "subject": "Duplicate charge on my card",
+      "body": "I was charged twice for this month's subscription."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "high",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-002",
+      "subject": "Refund not processed",
+      "body": "I requested a refund 2 weeks ago and still haven't received it."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "high",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-003",
+      "subject": "Invoice discrepancy",
+      "body": "My invoice shows charges for features I don't use."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "medium",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-004",
+      "subject": "Payment failed",
+      "body": "My payment failed but the card is valid."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "high",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-005",
+      "subject": "Cancel subscription",
+      "body": "I want to cancel my subscription effective immediately."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "medium",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-006",
+      "subject": "Upgrade pricing question",
+      "body": "How much does the enterprise plan cost for 50 users?"
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "low",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-007",
+      "subject": "Tax calculation error",
+      "body": "Sales tax was applied but my organization is tax exempt."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "medium",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-008",
+      "subject": "Pro-rated charge unexpected",
+      "body": "I was charged a pro-rated amount I didn't expect when changing plans."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "medium",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-009",
+      "subject": "Credit card update failed",
+      "body": "I cannot update my payment method in the billing portal."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "medium",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-010",
+      "subject": "Annual vs monthly confusion",
+      "body": "I thought I signed up for annual but I'm being charged monthly."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "medium",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-011",
+      "subject": "Charge after cancellation",
+      "body": "I cancelled last month but was charged again today."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "high",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-012",
+      "subject": "Need purchase order invoice",
+      "body": "Our procurement requires a PO-based invoice. Can you issue one?"
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "low",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-013",
+      "subject": "Currency conversion issue",
+      "body": "The charge in my local currency seems higher than expected."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "medium",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-014",
+      "subject": "Free trial ended early",
+      "body": "My 14-day trial ended after only 7 days."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "medium",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-015",
+      "subject": "Discount code not applied",
+      "body": "I entered a promo code at checkout but the price didn't change."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "low",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-016",
+      "subject": "Billing address change",
+      "body": "I need to update the billing address on my account."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "low",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-017",
+      "subject": "Multiple subscriptions",
+      "body": "I accidentally created two subscriptions for the same team."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "medium",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-018",
+      "subject": "Usage overage charge",
+      "body": "I got charged $200 for API overages I wasn't warned about."
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "high",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-019",
+      "subject": "Payment receipt needed",
+      "body": "Can you resend the payment receipt for last quarter?"
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "low",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "B-020",
+      "subject": "Enterprise discount inquiry",
+      "body": "We have 500+ seats. Is there a volume discount?"
+    },
+    "expected": {
+      "category": "billing",
+      "urgency": "low",
+      "routing_team": "Billing Operations",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-001",
+      "subject": "Production outage",
+      "body": "API unavailable for all users since 3am."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "critical",
+      "routing_team": "Incident Response",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-002",
+      "subject": "API returning 500 errors",
+      "body": "The /users endpoint returns 500 error intermittently."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "high",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-003",
+      "subject": "Service is down",
+      "body": "The entire platform is unreachable."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "critical",
+      "routing_team": "Incident Response",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-004",
+      "subject": "Database connection timeout",
+      "body": "Queries are timing out after 30 seconds."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "high",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-005",
+      "subject": "Webhook delivery failing",
+      "body": "Our webhook endpoint isn't receiving any events since yesterday."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "high",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-006",
+      "subject": "SDK version compatibility",
+      "body": "The Python SDK v3.2 throws ImportError on Python 3.12."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "medium",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-007",
+      "subject": "Rate limiting too aggressive",
+      "body": "We hit rate limits at only 10 requests per minute."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "medium",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-008",
+      "subject": "SSL certificate error",
+      "body": "Getting SSL_ERROR_HANDSHAKE_FAILURE when connecting to the API."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "high",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-009",
+      "subject": "Data export corrupted",
+      "body": "The CSV export has garbled characters in non-ASCII fields."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "medium",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-010",
+      "subject": "Slow API response times",
+      "body": "Average response time increased from 200ms to 5 seconds."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "high",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-011",
+      "subject": "Memory leak in worker",
+      "body": "Our worker process grows to 8GB RAM and crashes every 6 hours."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "high",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-012",
+      "subject": "CORS policy blocking requests",
+      "body": "Browser requests are blocked by CORS on your API."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "medium",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-013",
+      "subject": "Pagination returning duplicates",
+      "body": "Page 2 of results contains items from page 1."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "medium",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-014",
+      "subject": "File upload size limit",
+      "body": "Getting 413 error when uploading a 50MB file. What's the limit?"
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "low",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-015",
+      "subject": "Deployment rollback needed",
+      "body": "The latest deployment broke search functionality for all customers."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "critical",
+      "routing_team": "Incident Response",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-016",
+      "subject": "GraphQL schema change broke integration",
+      "body": "Field 'user.email' was removed without deprecation notice."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "high",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-017",
+      "subject": "Caching stale data",
+      "body": "Updates are not reflected for up to 30 minutes."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "medium",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-018",
+      "subject": "Docker image pull failing",
+      "body": "Cannot pull the latest image from your registry."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "medium",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-019",
+      "subject": "Log aggregation stopped",
+      "body": "No logs appearing in our monitoring since the maintenance window."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "high",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "T-020",
+      "subject": "IPv6 not supported",
+      "body": "Our infrastructure requires IPv6 but your endpoints only resolve to IPv4."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "low",
+      "routing_team": "Technical Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-001",
+      "subject": "Feature request: dark mode",
+      "body": "Please add dark mode to the dashboard."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "low",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-002",
+      "subject": "Dashboard widget not loading",
+      "body": "The analytics widget shows a spinner forever."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "medium",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-003",
+      "subject": "Export to PDF missing",
+      "body": "There's no option to export reports as PDF."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "low",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-004",
+      "subject": "Mobile app crashes on launch",
+      "body": "The iOS app crashes immediately after the latest update."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "high",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-005",
+      "subject": "Search not finding results",
+      "body": "I search for exact titles but get zero results."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "medium",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-006",
+      "subject": "Notification preferences not saving",
+      "body": "Every time I uncheck email notifications, they revert."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "medium",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-007",
+      "subject": "How do I create a team workspace?",
+      "body": "I cannot find the option to create a new workspace."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "low",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-008",
+      "subject": "Calendar integration suggestion",
+      "body": "Would be great to have Google Calendar sync."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "low",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-009",
+      "subject": "Keyboard shortcuts not working",
+      "body": "Ctrl+K shortcut doesn't open the command palette."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "low",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-010",
+      "subject": "Report generation timeout",
+      "body": "Large reports with 10k+ rows never finish generating."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "medium",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-011",
+      "subject": "Drag and drop broken in Firefox",
+      "body": "Can't reorder items via drag and drop in Firefox 120."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "medium",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-012",
+      "subject": "Bulk delete not available",
+      "body": "I need to delete 500 records but can only do one at a time."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "low",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-013",
+      "subject": "Localization issues in Spanish",
+      "body": "Several UI strings are not translated in the Spanish locale."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "low",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-014",
+      "subject": "Auto-save not working",
+      "body": "I lost 2 hours of work because the editor didn't auto-save."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "high",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-015",
+      "subject": "Chart colors not accessible",
+      "body": "The chart color scheme is indistinguishable for colorblind users."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "medium",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-016",
+      "subject": "Custom fields needed",
+      "body": "We need custom metadata fields on project records."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "low",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-017",
+      "subject": "Sorting broken on date column",
+      "body": "Sorting by date puts 2024 items before 2023."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "medium",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-018",
+      "subject": "Video player buffering",
+      "body": "Embedded videos buffer constantly on stable 100Mbps connection."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "medium",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-019",
+      "subject": "Onboarding wizard skipped",
+      "body": "The setup wizard closed and I can't get it back."
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "low",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "P-020",
+      "subject": "Multi-language support request",
+      "body": "Will you support Japanese and Korean in the next release?"
+    },
+    "expected": {
+      "category": "product",
+      "urgency": "low",
+      "routing_team": "Product Support",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "O-001",
+      "subject": "Partnership inquiry",
+      "body": "We'd like to discuss a reseller partnership."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "low",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "O-002",
+      "subject": "Job application status",
+      "body": "I applied for the backend engineer role. Any update?"
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "low",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "O-003",
+      "subject": "Press inquiry",
+      "body": "I'm a journalist writing about AI tools. Can I interview your CEO?"
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "low",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "O-004",
+      "subject": "Spam message",
+      "body": "Buy cheap watches at www.spam-site.example"
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "low",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "O-005",
+      "subject": "Legal document request",
+      "body": "Please send your DPA for GDPR compliance review."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "medium",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "O-006",
+      "subject": "Conference sponsorship",
+      "body": "Would you sponsor our developer conference in March?"
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "low",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "O-007",
+      "subject": "General feedback",
+      "body": "Love the product! Keep up the good work."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "low",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "O-008",
+      "subject": "Compliance certification",
+      "body": "Do you have SOC2 Type II certification?"
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "medium",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "O-009",
+      "subject": "Unrelated question",
+      "body": "What's the weather like in San Francisco today?"
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "low",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "O-010",
+      "subject": "Investor relations",
+      "body": "I'd like to discuss potential Series B funding."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "low",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "X-001",
+      "subject": "Cannot log in and was charged twice",
+      "body": "I need password reset and a refund for duplicate billing."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "high",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "X-002",
+      "subject": "App broken after billing change",
+      "body": "Changed my plan and now the dashboard gives server errors."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "high",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "X-003",
+      "subject": "Feature broken and need refund",
+      "body": "Dark mode broke my layout and I want my money back."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "medium",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "X-004",
+      "subject": "Account locked during outage",
+      "body": "I can't log in but the status page shows system issues."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "high",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "X-005",
+      "subject": "Unauthorized charges after hack",
+      "body": "Someone accessed my account and made purchases I didn't authorize."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "critical",
+      "routing_team": "Incident Response",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "X-006",
+      "subject": "Multiple issues at once",
+      "body": "Login broken, billing wrong, and the API is slow."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "high",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "X-007",
+      "subject": "Vague complaint",
+      "body": "Nothing is working and I'm very frustrated."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "medium",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "X-008",
+      "subject": "Mixed technical and product",
+      "body": "The export feature crashes the server when I use it."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "high",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "X-009",
+      "subject": "Unclear intent",
+      "body": "I need help with my thing that's not doing what I expect."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "medium",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "X-010",
+      "subject": "Language barrier",
+      "body": "Problema con mi cuenta, no puedo acceder al sistema."
+    },
+    "expected": {
+      "category": "other",
+      "urgency": "medium",
+      "routing_team": "General Support",
+      "human_review": true
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "C-001",
+      "subject": "Security breach detected",
+      "body": "Unauthorized data access detected in production database."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "critical",
+      "routing_team": "Incident Response",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "C-002",
+      "subject": "Company-wide system failure",
+      "body": "All users across the company cannot access any services."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "critical",
+      "routing_team": "Incident Response",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "C-003",
+      "subject": "Data loss incident",
+      "body": "Customer records appear to be deleted from the production database."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "critical",
+      "routing_team": "Incident Response",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "C-004",
+      "subject": "Ransomware alert",
+      "body": "Security team detected encryption activity on production servers."
+    },
+    "expected": {
+      "category": "technical",
+      "urgency": "critical",
+      "routing_team": "Incident Response",
+      "human_review": false
+    }
+  },
+  {
+    "ticket": {
+      "ticket_id": "C-005",
+      "subject": "API keys leaked publicly",
+      "body": "Our API credentials were found in a public GitHub repository."
+    },
+    "expected": {
+      "category": "account_auth",
+      "urgency": "critical",
+      "routing_team": "Account Support",
+      "human_review": false
+    }
+  }
+]
