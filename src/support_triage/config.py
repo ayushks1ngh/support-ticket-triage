@@ -43,6 +43,7 @@ class Settings:
     model_max_tokens: int = 4096
     model_temperature: float = 0.01
     request_timeout: int = 30
+    batch_delay: float = 0.0
 
     def __post_init__(self) -> None:
         if not self.model_id.strip():
@@ -65,6 +66,8 @@ class Settings:
             raise ValueError("MODEL_TEMPERATURE must be between 0 and 2")
         if not 5 <= self.request_timeout <= 120:
             raise ValueError("REQUEST_TIMEOUT_SECONDS must be between 5 and 120")
+        if not 0.0 <= self.batch_delay <= 30.0:
+            raise ValueError("BATCH_DELAY_SECONDS must be between 0 and 30")
 
     @classmethod
     def from_env(cls, *, load_env_file: bool = True) -> Settings:
@@ -91,6 +94,7 @@ class Settings:
             model_max_tokens=_int_env("MODEL_MAX_TOKENS", 4096),
             model_temperature=_float_env("MODEL_TEMPERATURE", 0.01),
             request_timeout=_int_env("REQUEST_TIMEOUT_SECONDS", 30),
+            batch_delay=_float_env("BATCH_DELAY_SECONDS", 0.0),
         )
 
     def require_api_key(self) -> str:
@@ -105,6 +109,7 @@ class Settings:
         model_id: str | None = None,
         threshold: float | None = None,
         batch_size: int | None = None,
+        batch_delay: float | None = None,
     ) -> Settings:
         selected = provider or self.provider
         provider_changed = provider is not None and provider != self.provider
@@ -118,6 +123,7 @@ class Settings:
                 threshold if threshold is not None else self.human_review_threshold
             ),
             batch_size=batch_size if batch_size is not None else self.batch_size,
+            batch_delay=batch_delay if batch_delay is not None else self.batch_delay,
         )
 
 

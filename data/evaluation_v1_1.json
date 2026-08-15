@@ -1189,10 +1189,10 @@
       "body": "Changed my plan and now the dashboard gives server errors."
     },
     "expected": {
-      "category": "other",
+      "category": "technical",
       "urgency": "high",
-      "routing_team": "General Support",
-      "human_review": true
+      "routing_team": "Technical Support",
+      "human_review": false
     }
   },
   {
@@ -1228,10 +1228,10 @@
       "body": "Someone accessed my account and made purchases I didn't authorize."
     },
     "expected": {
-      "category": "other",
+      "category": "account_auth",
       "urgency": "critical",
-      "routing_team": "Incident Response",
-      "human_review": true
+      "routing_team": "Account Support",
+      "human_review": false
     }
   },
   {

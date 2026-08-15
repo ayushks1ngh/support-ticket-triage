@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from time import perf_counter
+from time import sleep as time_sleep
 from uuid import uuid4
 
 from support_triage.classifier import TicketClassifier
@@ -47,10 +48,13 @@ def process_tickets(
                 retries += chunk_retries
                 result_by_id.update((result.ticket_id, result) for result in results)
     else:
-        for chunk in chunks:
+        for idx, chunk in enumerate(chunks):
             results, chunk_retries = classifier.classify_model_chunk(chunk)
             retries += chunk_retries
             result_by_id.update((result.ticket_id, result) for result in results)
+            # Apply inter-chunk delay to avoid rate-limit bursts (not after last chunk)
+            if settings.batch_delay > 0 and idx < len(chunks) - 1:
+                time_sleep(settings.batch_delay)
 
     ordered = [result_by_id[ticket.ticket_id] for ticket in tickets]
     errors = input_errors or []

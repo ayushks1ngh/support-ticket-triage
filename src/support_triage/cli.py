@@ -37,6 +37,7 @@ def _add_runtime_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--model-id")
     parser.add_argument("--threshold", type=float)
     parser.add_argument("--batch-size", type=int)
+    parser.add_argument("--batch-delay", type=float)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -47,6 +48,7 @@ def main(argv: list[str] | None = None) -> int:
             model_id=args.model_id,
             threshold=args.threshold,
             batch_size=args.batch_size,
+            batch_delay=args.batch_delay,
         )
         provider = None if args.offline else create_provider(settings)
         classifier = TicketClassifier(
