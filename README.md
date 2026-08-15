@@ -92,6 +92,15 @@ Run metrics include request ID, ticket/source/review/failure counts, provider/mo
 
 ## Decision boundary
 
+1. Obvious tickets are resolved deterministically.
+2. Ambiguous/conflicting tickets are passed to the Strands agent.
+3. The agent uses retrieved support context when available.
+4. The result is validated against the expected schema.
+5. Low-confidence or conflicting cases are flagged for human review.
+6. Valid high-confidence cases are routed automatically.
+
+Detailed rules:
+
 1. Invalid fields are rejected at the boundary.
 2. Exactly one strong deterministic category match with no cross-category vocabulary produces a rule result at confidence `0.96`.
 3. Cross-category vocabulary signals (even without a second rule match) defer to the model.
